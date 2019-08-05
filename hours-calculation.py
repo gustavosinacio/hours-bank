@@ -31,6 +31,9 @@ elapseds = []
 
 for line in lines:
 
+  if len(line) < 33:
+    break
+
   startString = line[:-1].split(' ')[0]
   endString = line[:-1].split(' ')[1]
 
@@ -44,8 +47,12 @@ for line in lines:
 
   # starts.append(start)
   # ends.append(end)
-
-  extras.append(extraTime)
   # elapseds.append(elapsed)
 
-print(addExtras(extras))
+  extras.append(extraTime)
+
+delta = addExtras(extras)
+
+formated = (delta.days*1440) + delta.seconds/60
+
+print("{:.0f} minutes".format(formated))
