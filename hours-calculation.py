@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
+import sys
 import os
 from datetime import datetime
 from datetime import timedelta
 
-dateFormat = '%Y-%m-%dT%H:%M'
-printFormat = '%H:%M'
+print(sys.argv)
+
+timeFormat = '%H:%M'
 
 def timeDeltaFormated(elapsed, delta):
   if elapsed > delta:
@@ -38,31 +40,29 @@ elapseds = []
 
 for line in lines:
 
-  if len(line) < 33:
+  if len(line) < 23:
     line = line.strip()
 
     if len(line) == 16: # ------------------------------------------------------
-      time = datetime.strptime(line, dateFormat)
-      strTime = datetime.strftime(addTime(time, 510), printFormat)
-      print('Time in:  {}'.format(line.split('T')[1]))
+      time = datetime.strptime(line.split(' ')[1], timeFormat)
+      strTime = datetime.strftime(addTime(time, 510), timeFormat)
+      print('Time in:  {}'.format(line.split(' ')[1]))
       print('Time out: {}'.format(strTime))
     # --------------------------------------------------------------------------
     break
 
-  startString = line[:-1].split(' ')[0]
-  endString = line[:-1].split(' ')[1]
+  date = line[:-1].split(' ')[0]
+
+  startTime = line[:-1].split(' ')[1]
+  endTime = line[:-1].split(' ')[2]
 
   delta = timedelta(hours=8, minutes=30)
-  day = startString.split('T')[0]
-  start = datetime.strptime(startString, dateFormat)
-  end = datetime.strptime(endString, dateFormat)
+
+  start = datetime.strptime(startTime, timeFormat)
+  end = datetime.strptime(endTime, timeFormat)
   elapsed = (end - start)
 
   extraTime = timeDeltaFormated(elapsed, delta)
-
-  # starts.append(start)
-  # ends.append(end)
-  # elapseds.append(elapsed)
 
   extras.append(extraTime)
 
