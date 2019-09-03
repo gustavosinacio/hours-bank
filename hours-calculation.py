@@ -91,7 +91,9 @@ for line in lines:
 
   extras.append(extraTime)
 
-  print ('{} {}'.format(line, elapsed))
+  elapsedString = '{:02d}:{:02d}'.format(int(str(elapsed).split(':')[0]), int(str(elapsed).split(':')[1]))
+
+  print ('{} -> {}'.format(line, elapsedString))
 
 delta = addExtras(extras)
 
