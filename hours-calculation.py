@@ -5,7 +5,9 @@ import os
 from datetime import datetime
 from datetime import timedelta
 
-print(sys.argv)
+if(len(sys.argv) == 1): 
+  print('Enter a bank file.')
+  sys.exit()
 
 timeFormat = '%H:%M'
 
@@ -38,6 +40,7 @@ if not filename.endswith('.txt'):
   filename += '.txt'
 
 print(filename)
+print()
 
 filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
 file = open(filepath, "r")
@@ -52,7 +55,6 @@ absents = 0
 
 for line in lines:
   line = line.strip()
-  print (line)
 
   #-----------------------------------------------------------------------------
   if len(line) < 22:
@@ -88,6 +90,8 @@ for line in lines:
   extraTime = timeDeltaFormated(elapsed, delta)
 
   extras.append(extraTime)
+
+  print ('{} {}'.format(line, elapsed))
 
 delta = addExtras(extras)
 
