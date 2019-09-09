@@ -70,6 +70,8 @@ for line in lines:
       # This means line has date and time in only
       time = datetime.strptime(line.split(' ')[1], timeFormat)
       strTime = datetime.strftime(addTime(time, 510), timeFormat)
+
+      print (line)
       print('Time in:  {}'.format(line.split(' ')[1]))
       print('Time out: {}'.format(strTime))
     continue
