@@ -53,6 +53,7 @@ extras = []
 elapseds = []
 absents = 0
 
+print('---Data---|--I--|-Out---> Elap.\n')
 for line in lines:
   line = line.strip()
 
@@ -63,6 +64,7 @@ for line in lines:
     if len(line) == 12:
       isAbsent = line.split(' ')[1] == '-'
       if(isAbsent):
+        print (line, '--FALTA--')
         absents +=1
         continue
 
@@ -72,7 +74,7 @@ for line in lines:
       strTime = datetime.strftime(addTime(time, 510), timeFormat)
 
       print (line)
-      print('Time in:  {}'.format(line.split(' ')[1]))
+      print('\nTime in:  {}'.format(line.split(' ')[1]))
       print('Time out: {}'.format(strTime))
     continue
   #-----------------------------------------------------------------------------
