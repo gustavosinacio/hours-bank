@@ -76,6 +76,14 @@ for line in lines:
       print (line)
       print('\nTime in:  {}'.format(line.split(' ')[1]))
       print('Time out: {}'.format(strTime))
+
+    if len(line) == 18:
+      isAbsent = line.split(' ')[2] == '-'
+      if(isAbsent):
+        print (line, '--SEM SAÍDA--')
+        absents +=1
+        continue
+
     continue
   #-----------------------------------------------------------------------------
 
